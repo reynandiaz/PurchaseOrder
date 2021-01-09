@@ -1,0 +1,15 @@
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\bin\Debug\PurchaseOrder.exe.config
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\bin\Debug\PurchaseOrder.exe
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\bin\Debug\PurchaseOrder.pdb
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.csprojAssemblyReference.cache
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.Login.resources
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.Properties.Resources.resources
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.csproj.GenerateResource.cache
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.csproj.CoreCompileInputs.cache
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.exe
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.pdb
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\bin\Debug\MySql.Data.xml
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.csproj.CopyComplete
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.Main.resources
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.PointOfSales.resources
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.Sales.resources

@@ -26,5 +26,26 @@ namespace PurchaseOrder.Process
             }
             return rtn;
         }
+
+        public static void CheckPCIPAddress(string ipaddress)
+        {
+            string countquery = "Select * from userpc where IPAddress = '" + ipaddress + "'";
+
+            DataTable dtable = Config.RetreiveData(countquery);
+            if (dtable.Rows.Count == 0)
+            {
+                string maxPCCode = "SELECT * FROM generatepccode";
+                int intMax = Config.ExecuteIntScalar(maxPCCode);
+                Config.PCCode = intMax.ToString();
+
+                string InsertCode = "Insert into userpc values("+ intMax + ",'" + ipaddress + "',now(),null,now())";
+                Config.ExecuteCmd(InsertCode);
+            }
+            else 
+            {
+                Config.PCCode = dtable.Rows[0][0].ToString();
+            }
+
+        }
     }
 }

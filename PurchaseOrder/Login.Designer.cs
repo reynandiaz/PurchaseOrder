@@ -36,6 +36,8 @@ namespace PurchaseOrder
             this.txtUser = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblPCCode = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblConnection
@@ -106,11 +108,31 @@ namespace PurchaseOrder
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 4);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.TabIndex = 44;
+            this.label2.Text = "PC Code:";
+            // 
+            // lblPCCode
+            // 
+            this.lblPCCode.AutoSize = true;
+            this.lblPCCode.Location = new System.Drawing.Point(60, 4);
+            this.lblPCCode.Name = "lblPCCode";
+            this.lblPCCode.Size = new System.Drawing.Size(44, 13);
+            this.lblPCCode.TabIndex = 45;
+            this.lblPCCode.Text = "pcCode";
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(316, 143);
+            this.Controls.Add(this.lblPCCode);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblConnection);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtPassword);
@@ -137,6 +159,8 @@ namespace PurchaseOrder
         internal System.Windows.Forms.TextBox txtUser;
         internal System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblPCCode;
     }
 }
 

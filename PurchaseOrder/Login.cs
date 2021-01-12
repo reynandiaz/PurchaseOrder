@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PurchaseOrder.Process;
+using System.Net;
 
 namespace PurchaseOrder
 {
@@ -21,6 +22,7 @@ namespace PurchaseOrder
         private void Login_Load(object sender, EventArgs e)
         {
             CheckConnection();
+            CheckIP();
         }
         private void CheckConnection()
         {
@@ -41,6 +43,13 @@ namespace PurchaseOrder
             {
                 Config.connection.Close();
             }
+        }
+        private void CheckIP()
+        {
+            string hostName = Dns.GetHostName();
+            string myIP = Dns.GetHostByName(hostName).AddressList[0].ToString();
+            LoginProcess.CheckPCIPAddress(myIP);
+            lblPCCode.Text = Config.PCCode;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

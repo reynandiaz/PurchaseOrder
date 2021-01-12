@@ -48,6 +48,7 @@ namespace PurchaseOrder
 
         private void pointOfSalesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            pointofsales.Dispose();
             pointofsales = new PointOfSales();
             pointofsales.MdiParent = this;
             pointofsales.NotifyMainFormToOpenChildForm2 += NotifyMainFormToOpenForm2;
@@ -55,6 +56,7 @@ namespace PurchaseOrder
         }
         private void NotifyMainFormToOpenForm2()
         {
+            if (sales != null) { sales.Dispose(); }
             sales = new Sales();
             sales.MdiParent = this;
             sales.Show();
@@ -62,10 +64,7 @@ namespace PurchaseOrder
 
         private void Main_KeyDown(object sender, KeyEventArgs e)
         {
-            //if (e.KeyCode.ToString() == "F1")
-            //{
-            //    pointOfSalesToolStripMenuItem_Click(sender, null);
-            //}
+
         }
 
     }

@@ -13,6 +13,7 @@ namespace PurchaseOrder.Process
         public static MySqlConnection connection = new MySqlConnection("Server=localhost;Database=purchaseorder_db;Uid=root;password=admin;SslMode=none;");
 
         public static DataTable UserInfo;
+        public static string PCCode;
 
         public static void ExecuteCmd(string query)
         {

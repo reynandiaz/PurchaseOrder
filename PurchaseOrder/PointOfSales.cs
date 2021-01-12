@@ -21,16 +21,47 @@ namespace PurchaseOrder
 
         private void btnSales_Click(object sender, EventArgs e)
         {
-            if (NotifyMainFormToOpenChildForm2 != null)
-            {
-                NotifyMainFormToOpenChildForm2();
-            }
+            //MDI FORM OPEN CHILD
+            //if (NotifyMainFormToOpenChildForm2 != null)
+            //{
+            //    NotifyMainFormToOpenChildForm2();
+            //}
+
+            Form sales = new Sales();
+            sales.ShowDialog();
+            RefreshTable();
+            
         }
 
         private void PointOfSales_Load(object sender, EventArgs e)
         {
-
+            
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void PointOfSales_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.ToString() == "F1")
+            {
+                btnSales_Click(sender, null);
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                this.Dispose();
+            }
+        }
+        private void RefreshTable()
+        { 
+
+
+        
+        
+        }
+
     }
 }
 

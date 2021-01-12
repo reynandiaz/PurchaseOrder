@@ -13,7 +13,6 @@ namespace PurchaseOrder
 {
     public partial class Sales : Form
     {
-        private DataTable scanneditems;
         public Sales()
         {
             InitializeComponent();
@@ -26,37 +25,80 @@ namespace PurchaseOrder
 
         private void Sales_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode.ToString() == "F1")
+            //if (e.KeyCode.ToString() == "F5")
+            //{
+            //    btnSave_Click(sender, null);
+            //}
+            if (e.KeyCode == Keys.Escape)
             {
-                btnSave_Click(sender, null);
+                this.Close();
             }
         }
 
         private void Sales_Load(object sender, EventArgs e)
         {
             txtBarcode.Focus();
-            scanneditems = new DataTable();
+            txtTransactionCode.Text=SalesProcess.GenerateTransactionCode();
         }
 
-        private void Sales_KeyUp(object sender, KeyEventArgs e)
+
+
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.F1)
-            {
-                this.Close();
-            }
+            this.Close();
         }
 
         private void txtBarcode_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (Convert.ToInt32(e.KeyChar) == 13)
+            if (e.KeyChar == '\r' || e.KeyChar == '\n' && txtBarcode.Text != "")
             {
-                //scanneditems = SalesProcess.ScanBarcode(scanneditems,txtBarcode.Text);
+                if (SalesProcess.ItemExist(txtBarcode.Text) == 0)
+                {
+                    RegisterItem.ItemCode = "";
+                    RegisterItem.ItemCode = txtBarcode.Text;
+                    Form registeritem = new RegisterItem();
+                    registeritem.ShowDialog();
+                }
+                var rtnValue = SalesProcess.ScanItems(txtTransactionCode.Text.Trim(), txtBarcode.Text.Trim());
+                
+                
+                RefreshTable();
+                txtBarcode.Text = ""; 
+                txtQty.Text = "";
+                txtBarcode.Focus();
+                
             }
         }
-        private void RefreshTable(DataTable data)
-        { 
-            foreach(DataRow row in data.Rows)
-            { }
+
+        private void RefreshTable()
+        {
+            DataTable dtable = new DataTable();
+            dtable = SalesProcess.RetrieveSalesData(txtTransactionCode.Text);
+
+            txtTotalPrice.Text = "";
+            double totalPrice = 0;
+
+            dataGridView1.Rows.Clear();
+            dataGridView1.AllowUserToAddRows = true;
+            if (dtable.Rows.Count > 0)
+            {
+                dataGridView1.Rows.Add(dtable.Rows.Count);
+                int x = 0;
+                foreach (DataRow row in dtable.Rows)
+                {
+                    dataGridView1.Rows[x].Cells[0].Value = row["ItemName"].ToString();
+                    dataGridView1.Rows[x].Cells[1].Value = row["Quantity"].ToString();
+                    dataGridView1.Rows[x].Cells[2].Value = row["UnitPrice"].ToString();
+                    dataGridView1.Rows[x].Cells[3].Value = row["Price"].ToString();
+
+                    totalPrice = totalPrice + Convert.ToDouble(row["Price"]);
+
+                    dataGridView1.Rows[x].Cells[4].Value = "X";
+                    x++;
+                }
+            }
+            dataGridView1.AllowUserToAddRows = false;
+            txtTotalPrice.Text = totalPrice.ToString();
         }
     }
 }

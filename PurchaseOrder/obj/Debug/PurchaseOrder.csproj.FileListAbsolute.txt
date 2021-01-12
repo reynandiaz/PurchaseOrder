@@ -14,3 +14,10 @@ C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOr
 C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.PointOfSales.resources
 C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.Sales.resources
 C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.RegisterItem.resources
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.PaymentMethod.resources
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\bin\Debug\Microsoft.ReportViewer.Common.dll
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\bin\Debug\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\bin\Debug\Microsoft.ReportViewer.WebForms.DLL
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.Reports.SalesReceipt.frmReceipt.resources
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\RdlCompile.cache
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\RdlCompile.compiled

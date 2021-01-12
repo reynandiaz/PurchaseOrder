@@ -86,15 +86,24 @@ namespace PurchaseOrder.Process
             }
             else
             { 
-                string strDetails = "select * from transactiondetails where " +
-                    "TransactionCode = '" + TransactionCode + "' and ItemCode= '"+ ItemCode +"'";
+                string strDetails = "SELECT * FROM  "+
+                                    "transactiondetails td "+
+                                    "INNER JOIN items i "+
+                                    "ON i.ItemCode = td.ItemCode "+
+                                    "WHERE td.TransactionCode = '"+ TransactionCode +"'"+
+                                    "AND i.ItemCode = '"+ ItemCode +"'";
                 DataTable dtDetails = Config.RetreiveData(strDetails);
 
-                string itemInfo = "Select * from items where ItemCode = '" + ItemCode + "'";
-                DataTable dtItemInfo = Config.RetreiveData(itemInfo);
+                string strUpdateDetails = "Update transactiondetails " +
+                    "set Quantity = " + (Convert.ToInt32(dtDetails.Rows[0]["Quantity"]) + 1) + ", " +
+                    "Price = " + (Convert.ToDouble(dtDetails.Rows[0]["UnitPrice"]) * (Convert.ToInt32(dtDetails.Rows[0]["Quantity"]) + 1)) + " " +
+                    " where TransactionCode = '" + TransactionCode + "' and ItemCode = '" + ItemCode + "'";
+                Config.ExecuteCmd(strUpdateDetails);
 
-
-
+                rtnValue.rtnSuccess = true;
+                rtnValue.rtnTotalPrice = (Convert.ToDouble(dtDetails.Rows[0]["UnitPrice"]) * (Convert.ToInt32(dtDetails.Rows[0]["Quantity"]) + 1));
+                rtnValue.rtnUnitPrice = (Convert.ToInt32(dtDetails.Rows[0]["Quantity"]) + 1);
+                rtnValue.rtnQty = (Convert.ToInt32(dtDetails.Rows[0]["Quantity"]) + 1);
             }
 
             return rtnValue;

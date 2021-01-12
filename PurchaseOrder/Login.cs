@@ -31,13 +31,15 @@ namespace PurchaseOrder
                 Config.connection.Open();
                 lblConnection.Text = "Connected";
             }
-            catch (Exception exc)
+            //catch (Exception exc)
+            catch
             {
                 lblConnection.Text = "Failed";
                 txtUser.Enabled = false;
                 txtPassword.Enabled = false;
                 btnLogin.Enabled = false;
-                MessageBox.Show(exc.ToString());
+                //MessageBox.Show(exc.ToString());
+                MessageBox.Show("Connection Failed!");
             }
             finally
             {

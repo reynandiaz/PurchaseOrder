@@ -13,6 +13,8 @@ namespace PurchaseOrder
 {
     public partial class Sales : Form
     {
+        public static int PaymentMethod;
+
         public Sales()
         {
             InitializeComponent();
@@ -20,15 +22,16 @@ namespace PurchaseOrder
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Print and Save!");
+            Form method = new PaymentMethod();
+            method.ShowDialog();
         }
 
         private void Sales_KeyDown(object sender, KeyEventArgs e)
         {
-            //if (e.KeyCode.ToString() == "F5")
-            //{
-            //    btnSave_Click(sender, null);
-            //}
+            if (e.KeyCode.ToString() == "F5")
+            {
+                btnSave_Click(sender, null);
+            }
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
@@ -41,8 +44,6 @@ namespace PurchaseOrder
             txtTransactionCode.Text=SalesProcess.GenerateTransactionCode();
         }
 
-
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -50,7 +51,7 @@ namespace PurchaseOrder
 
         private void txtBarcode_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == '\r' || e.KeyChar == '\n' && txtBarcode.Text != "")
+            if (e.KeyChar == '\r' || e.KeyChar == '\n' && txtBarcode.Text.Trim() != "")
             {
                 if (SalesProcess.ItemExist(txtBarcode.Text) == 0)
                 {
@@ -60,7 +61,6 @@ namespace PurchaseOrder
                     registeritem.ShowDialog();
                 }
                 var rtnValue = SalesProcess.ScanItems(txtTransactionCode.Text.Trim(), txtBarcode.Text.Trim());
-                
                 
                 RefreshTable();
                 txtBarcode.Text = ""; 

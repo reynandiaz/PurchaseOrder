@@ -30,7 +30,7 @@ namespace PurchaseOrder
         {
              if(txtCode.Text!="" && txtItemName.Text!="" && txtUnitPrice.Text!="")
             {
-                var rtnValue = ItemsProcess.AddNewItem(txtCode.Text, txtItemName.Text, txtUnitPrice.Text);
+                var rtnValue = ItemsProcess.AddNewItem(txtCode.Text.Trim(), txtItemName.Text.Trim(), txtUnitPrice.Text.Trim());
                 if (rtnValue.isSuccess == true)
                 {
                     this.Close();

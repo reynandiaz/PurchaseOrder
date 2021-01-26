@@ -15,15 +15,12 @@ namespace PurchaseOrder
     {
         private PointOfSales pointofsales = new PointOfSales();
         private Sales sales;
+        private Items items = new Items();
+        private AddItems additems;
 
         public Main()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("test");
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -61,11 +58,22 @@ namespace PurchaseOrder
             sales.MdiParent = this;
             sales.Show();
         }
-
-        private void Main_KeyDown(object sender, KeyEventArgs e)
+        private void NotifyMainFormToOpenChildFormAddItem()
         {
-
+            if (additems != null) { additems.Dispose(); }
+            additems = new AddItems();
+            additems.MdiParent = this;
+            additems.Show();
         }
+        
 
+        private void itemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            items.Dispose();
+            items = new Items();
+            items.MdiParent = this;
+            items.NotifyMainFormToOpenChildFormAddItem += NotifyMainFormToOpenChildFormAddItem;
+            items.Show();
+        }
     }
 }

@@ -32,7 +32,6 @@ namespace PurchaseOrder
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pointOfSalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.parkedSalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,8 +45,7 @@ namespace PurchaseOrder
             // salesToolStripMenuItem
             // 
             this.salesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pointOfSalesToolStripMenuItem,
-            this.parkedSalesToolStripMenuItem});
+            this.pointOfSalesToolStripMenuItem});
             this.salesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.salesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("salesToolStripMenuItem.Image")));
             this.salesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -65,12 +63,6 @@ namespace PurchaseOrder
             this.pointOfSalesToolStripMenuItem.Text = "Point of Sales";
             this.pointOfSalesToolStripMenuItem.Click += new System.EventHandler(this.pointOfSalesToolStripMenuItem_Click);
             // 
-            // parkedSalesToolStripMenuItem
-            // 
-            this.parkedSalesToolStripMenuItem.Name = "parkedSalesToolStripMenuItem";
-            this.parkedSalesToolStripMenuItem.Size = new System.Drawing.Size(198, 36);
-            this.parkedSalesToolStripMenuItem.Text = "Parked Sales";
-            // 
             // productsToolStripMenuItem
             // 
             this.productsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -85,9 +77,12 @@ namespace PurchaseOrder
             // 
             // itemsToolStripMenuItem
             // 
+            this.itemsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("itemsToolStripMenuItem.Image")));
+            this.itemsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
-            this.itemsToolStripMenuItem.Size = new System.Drawing.Size(118, 26);
+            this.itemsToolStripMenuItem.Size = new System.Drawing.Size(198, 36);
             this.itemsToolStripMenuItem.Text = "Items";
+            this.itemsToolStripMenuItem.Click += new System.EventHandler(this.itemsToolStripMenuItem_Click);
             // 
             // logoutToolStripMenuItem
             // 
@@ -150,7 +145,6 @@ namespace PurchaseOrder
             this.Text = "Main";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Main_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -164,7 +158,6 @@ namespace PurchaseOrder
 
         private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pointOfSalesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem parkedSalesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem itemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;

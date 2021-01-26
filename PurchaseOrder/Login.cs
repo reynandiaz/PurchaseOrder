@@ -23,6 +23,7 @@ namespace PurchaseOrder
         {
             CheckConnection();
             CheckIP();
+            //Config.PCCode="1";
         }
         private void CheckConnection()
         {
@@ -49,8 +50,8 @@ namespace PurchaseOrder
         private void CheckIP()
         {
             string hostName = Dns.GetHostName();
-            string myIP = Dns.GetHostByName(hostName).AddressList[0].ToString();
-            LoginProcess.CheckPCIPAddress(myIP);
+            //string myIP = Dns.GetHostByName(hostName).AddressList[0].ToString();
+            LoginProcess.CheckPCIPAddress(hostName);
             lblPCCode.Text = Config.PCCode;
         }
 

@@ -14,6 +14,10 @@ namespace PurchaseOrder
     public partial class Sales : Form
     {
         public static int PaymentMethod;
+        private int TransactionType;
+        public static double ReceivedPayment;
+
+        public static bool newItemAdded;
 
         public Sales()
         {
@@ -22,8 +26,26 @@ namespace PurchaseOrder
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            PaymentMethod = 0;
+            ReceivedPayment = 0.0;
+
             Form method = new PaymentMethod();
             method.ShowDialog();
+
+            Form payment = new ReceivePayment();
+            payment.ShowDialog();
+
+            var rtnValue = SalesProcess.InsertHeader(txtTransactionCode.Text.Trim(), TransactionType, Convert.ToDouble(txtTotalPrice.Text),
+                PaymentMethod, "", ReceivedPayment);
+            if (rtnValue.rtnSuccess == true)
+            {
+                Reports.SalesReceipt.frmReceipt.TransactionCode = txtTransactionCode.Text.Trim();
+                Form receipt = new Reports.SalesReceipt.frmReceipt();
+                receipt.ShowDialog();
+
+                this.Close();
+            }
+
         }
 
         private void Sales_KeyDown(object sender, KeyEventArgs e)
@@ -32,9 +54,9 @@ namespace PurchaseOrder
             {
                 btnSave_Click(sender, null);
             }
-            if (e.KeyCode == Keys.Escape)
+            else if (e.KeyCode == Keys.Escape)
             {
-                this.Close();
+                btnClose_Click(sender, null);
             }
         }
 
@@ -42,17 +64,24 @@ namespace PurchaseOrder
         {
             txtBarcode.Focus();
             txtTransactionCode.Text=SalesProcess.GenerateTransactionCode();
+            TransactionType = 1;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult dialogResult = MessageBox.Show("Cancel order?", "System Message", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                SalesProcess.CancelOrder(txtTransactionCode.Text);
+                this.Close();
+            }
         }
 
         private void txtBarcode_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == '\r' || e.KeyChar == '\n' && txtBarcode.Text.Trim() != "")
             {
+                newItemAdded = false;   
                 if (SalesProcess.ItemExist(txtBarcode.Text) == 0)
                 {
                     RegisterItem.ItemCode = "";
@@ -60,13 +89,14 @@ namespace PurchaseOrder
                     Form registeritem = new RegisterItem();
                     registeritem.ShowDialog();
                 }
-                var rtnValue = SalesProcess.ScanItems(txtTransactionCode.Text.Trim(), txtBarcode.Text.Trim());
-                
+                if (newItemAdded == false)
+                { 
+                    var rtnValue = SalesProcess.ScanItems(txtTransactionCode.Text.Trim(), txtBarcode.Text.Trim());
+                }
                 RefreshTable();
                 txtBarcode.Text = ""; 
                 txtQty.Text = "";
                 txtBarcode.Focus();
-                
             }
         }
 
@@ -86,19 +116,29 @@ namespace PurchaseOrder
                 int x = 0;
                 foreach (DataRow row in dtable.Rows)
                 {
-                    dataGridView1.Rows[x].Cells[0].Value = row["ItemName"].ToString();
-                    dataGridView1.Rows[x].Cells[1].Value = row["Quantity"].ToString();
-                    dataGridView1.Rows[x].Cells[2].Value = row["UnitPrice"].ToString();
-                    dataGridView1.Rows[x].Cells[3].Value = row["Price"].ToString();
+                    dataGridView1.Rows[x].Cells[0].Value = row["Seq"].ToString();
+                    dataGridView1.Rows[x].Cells[1].Value = row["ItemName"].ToString();
+                    dataGridView1.Rows[x].Cells[2].Value = row["Quantity"].ToString();
+                    dataGridView1.Rows[x].Cells[3].Value = row["UnitPrice"].ToString();
+                    dataGridView1.Rows[x].Cells[4].Value = row["Price"].ToString();
 
                     totalPrice = totalPrice + Convert.ToDouble(row["Price"]);
 
-                    dataGridView1.Rows[x].Cells[4].Value = "X";
+                    dataGridView1.Rows[x].Cells[5].Value = "X";
                     x++;
                 }
             }
             dataGridView1.AllowUserToAddRows = false;
             txtTotalPrice.Text = totalPrice.ToString();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 5)
+            {
+                SalesProcess.DeleteItem(txtTransactionCode.Text,Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value));
+                RefreshTable();
+            }
         }
     }
 }

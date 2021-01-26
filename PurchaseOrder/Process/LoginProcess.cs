@@ -27,9 +27,9 @@ namespace PurchaseOrder.Process
             return rtn;
         }
 
-        public static void CheckPCIPAddress(string ipaddress)
+        public static void CheckPCIPAddress(string hostname)
         {
-            string countquery = "Select * from userpc where IPAddress = '" + ipaddress + "'";
+            string countquery = "Select * from userpc where HostName = '" + hostname + "'";
 
             DataTable dtable = Config.RetreiveData(countquery);
             if (dtable.Rows.Count == 0)
@@ -38,7 +38,7 @@ namespace PurchaseOrder.Process
                 int intMax = Config.ExecuteIntScalar(maxPCCode);
                 Config.PCCode = intMax.ToString();
 
-                string InsertCode = "Insert into userpc values("+ intMax + ",'" + ipaddress + "',now(),null,now())";
+                string InsertCode = "Insert into userpc values("+ intMax + ",'" + hostname + "',now(),null,now())";
                 Config.ExecuteCmd(InsertCode);
             }
             else 

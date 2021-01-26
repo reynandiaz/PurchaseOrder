@@ -17,8 +17,8 @@ namespace PurchaseOrder.Process
             public double rtnUnitPrice;
             public double rtnTotalPrice;
             public bool rtnSuccess;
+            public string rtnMessage;
         }
-
         public static string GenerateTransactionCode()
         {
             string strCode="";
@@ -79,6 +79,11 @@ namespace PurchaseOrder.Process
                     "'"+Config.UserInfo.Rows[0]["UserCode"].ToString() + "')";
                 Config.ExecuteCmd(strInsertDetails);
 
+                string UpdateStocks = "UPDATE stocks "+
+                                      "SET CurrentStocks = CurrentStocks-1 " +
+                                      "WHERE ItemCode = '"+ ItemCode +"'";
+                Config.ExecuteCmd(UpdateStocks);
+
                 rtnValue.rtnSuccess = true;
                 rtnValue.rtnTotalPrice = Convert.ToDouble(dtItemInfo.Rows[0]["UnitPrice"]);
                 rtnValue.rtnUnitPrice = Convert.ToDouble(dtItemInfo.Rows[0]["UnitPrice"]);
@@ -100,6 +105,11 @@ namespace PurchaseOrder.Process
                     " where TransactionCode = '" + TransactionCode + "' and ItemCode = '" + ItemCode + "'";
                 Config.ExecuteCmd(strUpdateDetails);
 
+                string UpdateStocks = "UPDATE stocks " +
+                      "SET CurrentStocks = CurrentStocks-1 " +
+                      "WHERE ItemCode = '" + ItemCode + "'";
+                Config.ExecuteCmd(UpdateStocks);
+
                 rtnValue.rtnSuccess = true;
                 rtnValue.rtnTotalPrice = (Convert.ToDouble(dtDetails.Rows[0]["UnitPrice"]) * (Convert.ToInt32(dtDetails.Rows[0]["Quantity"]) + 1));
                 rtnValue.rtnUnitPrice = (Convert.ToInt32(dtDetails.Rows[0]["Quantity"]) + 1);
@@ -113,12 +123,47 @@ namespace PurchaseOrder.Process
         {
             DataTable rtnValue = new DataTable();
 
-            string getData= "Select * from transactiondetails T " +
-                "inner join Items I " +
-                "on I.ItemCode = T.ItemCode " +
-                "where TransactionCode='" + TransactionCode + "'";
+            string getData= "Select * from transactiondetails t " +
+                "inner join Items i " +
+                "on i.ItemCode = t.ItemCode " +
+                "left JOIN transactionheader th "+
+                "ON th.TransactionCode = t.TransactionCode "+
+                "where t.TransactionCode='" + TransactionCode + "' order by t.createddate";
             
             return rtnValue = Config.RetreiveData(getData);
+        }
+
+        public static returnScannedItem InsertHeader(string TransactionCode, int TransactionType, 
+            double TotalPrice, int PaymentMethod, string Comment,double ReceivedPayment)
+        {
+            returnScannedItem rtnValue = new returnScannedItem();
+            string query = "INSERT INTO transactionheader (TransactionCode, TransactionType,ReceivedPayment, TotalPrice, PaymentMethodID, Comments, CreatedDate, DeletedDate, UpdatedDate, UpdatedBy) " +
+                           "VALUES('"+TransactionCode+"', "+ TransactionType + "," + ReceivedPayment + " ," + TotalPrice+", "+ PaymentMethod +", '"+ Comment +"', now(), null, now(), '"+ Config.UserInfo.Rows[0]["UpdatedBy"] + "')";
+            try
+            {
+                Config.ExecuteCmd(query);
+                rtnValue.rtnSuccess = true;
+            }
+            catch(Exception exc)
+            {
+                rtnValue.rtnMessage = exc.ToString();
+                rtnValue.rtnSuccess = false;
+            }
+            return rtnValue;
+        }
+
+        public static void CancelOrder(string TransactionCode)
+        {
+            string query = "DELETE FROM transactiondetails " +
+                           "WHERE TransactionCode = '"+ TransactionCode +"'";
+            Config.ExecuteCmd(query);
+        }
+        public static void DeleteItem(string TransactionCode,int Seq)
+        {
+            string query = "DELETE FROM transactiondetails " +
+                           "WHERE TransactionCode = '" + TransactionCode + "' and Seq = " + Seq;
+
+            Config.ExecuteCmd(query);
         }
     }
 }

@@ -40,6 +40,7 @@ namespace PurchaseOrder
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Seq = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -152,6 +153,7 @@ namespace PurchaseOrder
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Seq,
             this.ItemName,
             this.Quantity,
             this.UnitPrice,
@@ -161,6 +163,13 @@ namespace PurchaseOrder
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(553, 289);
             this.dataGridView1.TabIndex = 10;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // Seq
+            // 
+            this.Seq.HeaderText = "Seq";
+            this.Seq.Name = "Seq";
+            this.Seq.Width = 40;
             // 
             // ItemName
             // 
@@ -337,13 +346,14 @@ namespace PurchaseOrder
         private System.Windows.Forms.Button btnDiscount;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtTransactionCode;
+        private System.Windows.Forms.TextBox txtBarcode;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Seq;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalPrice;
         private System.Windows.Forms.DataGridViewButtonColumn Cancel;
-        private System.Windows.Forms.TextBox txtBarcode;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }

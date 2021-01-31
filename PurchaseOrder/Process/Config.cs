@@ -10,7 +10,10 @@ namespace PurchaseOrder.Process
 {
     public class Config
     {
+        //Test Settings
         public static MySqlConnection connection = new MySqlConnection("Server=localhost;Database=purchaseorder_db;Uid=root;password=admin;SslMode=none;");
+
+        //Deployed Settings
         //public static MySqlConnection connection = new MySqlConnection("Server=localhost;Database=purchaseorder_db;Uid=root;password=;SslMode=none;");
 
         public static DataTable UserInfo;

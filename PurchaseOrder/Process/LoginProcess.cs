@@ -13,7 +13,7 @@ namespace PurchaseOrder.Process
         {
             bool rtn=false;
             string query = "SELECT* FROM users "+
-                           "WHERE UserName = '"+ Username +"' AND password = '"+ Password +"'" ;
+                           "WHERE UserName = '"+ Username +"' AND password = '"+ Password +"' and deleteddate is null" ;
             DataTable userinfo = Config.RetreiveData(query);
             if (userinfo.Rows.Count != 0)
             {

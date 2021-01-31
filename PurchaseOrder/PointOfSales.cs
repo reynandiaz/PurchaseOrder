@@ -37,6 +37,14 @@ namespace PurchaseOrder
         private void PointOfSales_Load(object sender, EventArgs e)
         {
             RefreshTable();
+            if (Convert.ToInt32(Config.UserInfo.Rows[0]["UserRights"]) == 2)
+            {
+                btnStockOut.Enabled = false;
+            }
+            else
+            {
+                btnStockOut.Enabled = true;
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -46,10 +54,16 @@ namespace PurchaseOrder
 
         private void PointOfSales_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode.ToString() == "F1")
+            if (e.KeyCode == Keys.F1)
             {
                 btnSales_Click(sender, null);
-
+            }
+            else if (e.KeyCode == Keys.F2)
+            {
+                if (Convert.ToInt32(Config.UserInfo.Rows[0]["UserRights"]) == 1)
+                { 
+                    btnStockOut_Click(sender, null);
+                }
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -60,11 +74,18 @@ namespace PurchaseOrder
         {
             string datecode = DateTime.Now.ToString("yyyyMMdd");
 
-            string query = "SELECT * FROM  "+
-                           "transactionheader th "+
-                           "INNER JOIN paymentmethod pm "+
-                           "ON pm.PaymentMethodID = th.PaymentMethodID " +
-                           "WHERE TransactionCode LIKE '" + Config.PCCode + "-" + datecode + "-%' ";
+            string query = "SELECT * FROM  " +
+                           "transactionheader th " +
+                           "INNER JOIN paymentmethod pm " +
+                           "ON pm.PaymentMethodID = th.PaymentMethodID ";
+            if (Convert.ToInt32(Config.UserInfo.Rows[0]["UserRights"]) == 2)
+            {
+                query = query + "WHERE TransactionCode LIKE '" + Config.PCCode + "-" + datecode + "-%' order by TransactionCode desc";
+            }
+            else
+            {
+                query = query + "WHERE TransactionCode LIKE '%-" + datecode + "-%' order by TransactionCode desc";
+            }
 
             DataTable dtable = Config.RetreiveData(query);
 
@@ -124,6 +145,20 @@ namespace PurchaseOrder
                 Reports.SalesReceipt.frmReceipt.TransactionCode = lblCode.Text.Trim();
                 Form receipt = new Reports.SalesReceipt.frmReceipt();
                 receipt.ShowDialog();
+            }
+        }
+
+        private void btnStockOut_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Print Today's Stock out?", "System Message", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Reports.StockOut.frmStockOut.TransactionCode = SalesProcess.GenerateTransactionCode();
+                Reports.StockOut.frmStockOut.DateFrom = DateTime.Now;
+                Reports.StockOut.frmStockOut.DateTo = DateTime.Now;
+                Reports.StockOut.frmStockOut.blTodayOnly = true;
+                Form stockout = new Reports.StockOut.frmStockOut();
+                stockout.ShowDialog();
             }
         }
     }

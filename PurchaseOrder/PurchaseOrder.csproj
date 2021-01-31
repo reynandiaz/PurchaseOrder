@@ -69,11 +69,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddItems.cs">
+    <Compile Include="ItemsInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddItems.Designer.cs">
-      <DependentUpon>AddItems.cs</DependentUpon>
+    <Compile Include="ItemsInfo.Designer.cs">
+      <DependentUpon>ItemsInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Items.cs">
       <SubType>Form</SubType>
@@ -89,6 +89,7 @@
     </Compile>
     <Compile Include="Process\ItemsProcess.cs" />
     <Compile Include="Process\PaymentMethodProcess.cs" />
+    <Compile Include="Process\UsersProcess.cs" />
     <Compile Include="ReceivePayment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +136,17 @@
     <Compile Include="Reports\SalesReceipt\frmReceipt.Designer.cs">
       <DependentUpon>frmReceipt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\StockOut\dtStockout.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtStockout.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\StockOut\frmStockOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\StockOut\frmStockOut.Designer.cs">
+      <DependentUpon>frmStockOut.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,8 +154,20 @@
       <DependentUpon>Sales.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <EmbeddedResource Include="AddItems.resx">
-      <DependentUpon>AddItems.cs</DependentUpon>
+    <Compile Include="StockOutRange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockOutRange.Designer.cs">
+      <DependentUpon>StockOutRange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users.Designer.cs">
+      <DependentUpon>Users.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ItemsInfo.resx">
+      <DependentUpon>ItemsInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Items.resx">
       <DependentUpon>Items.cs</DependentUpon>
@@ -179,8 +203,18 @@
       <DependentUpon>frmReceipt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\SalesReceipt\rptReceipt.rdlc" />
+    <EmbeddedResource Include="Reports\StockOut\frmStockOut.resx">
+      <DependentUpon>frmStockOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\StockOut\rptStocks.rdlc" />
     <EmbeddedResource Include="Sales.resx">
       <DependentUpon>Sales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockOutRange.resx">
+      <DependentUpon>StockOutRange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users.resx">
+      <DependentUpon>Users.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -203,6 +237,17 @@
     <None Include="Reports\SalesReceipt\dtReceipt.xss">
       <DependentUpon>dtReceipt.xsd</DependentUpon>
     </None>
+    <None Include="Reports\StockOut\dtStockout.xsc">
+      <DependentUpon>dtStockout.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\StockOut\dtStockout.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtStockout.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\StockOut\dtStockout.xss">
+      <DependentUpon>dtStockout.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -222,5 +267,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

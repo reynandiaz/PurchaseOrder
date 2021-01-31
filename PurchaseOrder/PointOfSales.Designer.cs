@@ -46,16 +46,13 @@ namespace PurchaseOrder
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.ItemName2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblCode = new System.Windows.Forms.Label();
             this.lblReceived = new System.Windows.Forms.Label();
             this.lblTotalPrice = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnStockOut = new System.Windows.Forms.Button();
+            this.ItemName2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -135,7 +132,7 @@ namespace PurchaseOrder
             // 
             this.btnClose.BackColor = System.Drawing.Color.IndianRed;
             this.btnClose.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnClose.Location = new System.Drawing.Point(1026, 40);
+            this.btnClose.Location = new System.Drawing.Point(1071, 40);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(36, 28);
             this.btnClose.TabIndex = 6;
@@ -147,7 +144,7 @@ namespace PurchaseOrder
             // 
             this.btnReprint.Location = new System.Drawing.Point(823, 395);
             this.btnReprint.Name = "btnReprint";
-            this.btnReprint.Size = new System.Drawing.Size(120, 28);
+            this.btnReprint.Size = new System.Drawing.Size(138, 28);
             this.btnReprint.TabIndex = 8;
             this.btnReprint.Text = "Reprint";
             this.btnReprint.UseVisualStyleBackColor = true;
@@ -155,9 +152,9 @@ namespace PurchaseOrder
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(942, 395);
+            this.button6.Location = new System.Drawing.Point(969, 395);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(120, 28);
+            this.button6.Size = new System.Drawing.Size(138, 28);
             this.button6.TabIndex = 9;
             this.button6.Text = "button6";
             this.button6.UseVisualStyleBackColor = true;
@@ -199,25 +196,8 @@ namespace PurchaseOrder
             this.dataGridView2.Location = new System.Drawing.Point(823, 135);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.Size = new System.Drawing.Size(239, 254);
+            this.dataGridView2.Size = new System.Drawing.Size(284, 254);
             this.dataGridView2.TabIndex = 7;
-            // 
-            // ItemName2
-            // 
-            this.ItemName2.HeaderText = "Name";
-            this.ItemName2.Name = "ItemName2";
-            // 
-            // Qty
-            // 
-            this.Qty.HeaderText = "Qty";
-            this.Qty.Name = "Qty";
-            this.Qty.Width = 50;
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
-            this.Price.Width = 65;
             // 
             // lblCode
             // 
@@ -246,47 +226,39 @@ namespace PurchaseOrder
             this.lblTotalPrice.TabIndex = 15;
             this.lblTotalPrice.Text = "***";
             // 
-            // button2
+            // btnStockOut
             // 
-            this.button2.Location = new System.Drawing.Point(157, 40);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(139, 41);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnStockOut.Location = new System.Drawing.Point(157, 40);
+            this.btnStockOut.Name = "btnStockOut";
+            this.btnStockOut.Size = new System.Drawing.Size(139, 41);
+            this.btnStockOut.TabIndex = 1;
+            this.btnStockOut.Text = "Current Stock Out (F2)";
+            this.btnStockOut.UseVisualStyleBackColor = true;
+            this.btnStockOut.Click += new System.EventHandler(this.btnStockOut_Click);
             // 
-            // button3
+            // ItemName2
             // 
-            this.button3.Location = new System.Drawing.Point(302, 40);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(139, 41);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.ItemName2.HeaderText = "Name";
+            this.ItemName2.Name = "ItemName2";
+            this.ItemName2.Width = 150;
             // 
-            // button4
+            // Qty
             // 
-            this.button4.Location = new System.Drawing.Point(447, 40);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(139, 41);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.Qty.HeaderText = "Qty";
+            this.Qty.Name = "Qty";
+            this.Qty.Width = 40;
             // 
-            // button5
+            // Price
             // 
-            this.button5.Location = new System.Drawing.Point(592, 40);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(139, 41);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            this.Price.Width = 65;
             // 
             // PointOfSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1074, 448);
+            this.ClientSize = new System.Drawing.Size(1154, 448);
             this.ControlBox = false;
             this.Controls.Add(this.lblTotalPrice);
             this.Controls.Add(this.lblReceived);
@@ -299,10 +271,7 @@ namespace PurchaseOrder
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnStockOut);
             this.Controls.Add(this.btnSales);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -331,9 +300,6 @@ namespace PurchaseOrder
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.Label lblCode;
         private System.Windows.Forms.Label lblReceived;
         private System.Windows.Forms.Label lblTotalPrice;
@@ -345,9 +311,9 @@ namespace PurchaseOrder
         private System.Windows.Forms.DataGridViewTextBoxColumn Received;
         private System.Windows.Forms.DataGridViewTextBoxColumn User;
         private System.Windows.Forms.DataGridViewButtonColumn Details;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnStockOut;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
     }
 }

@@ -78,6 +78,43 @@ namespace PurchaseOrder.Process
 
             return rtnValue;
         }
+        public static returnValue UpdateItemDetails(string ItemCode, string ItemName,
+        string UnitPrice, string MinStocks, string Curstocks, string MaxStocks)
+        {
+            returnValue rtnValue = new returnValue();
+            try
+            {
+                
+                string updateItems = "UPDATE items "+
+                                    "SET ItemName = '"+ ItemName +"' " +
+                                    ", Description = NULL " +
+                                    ", UnitPrice = '"+ UnitPrice + "' " +
+                                    ", UpdatedDate = now() " +
+                                    ", UpdatedBy = '" + Config.UserInfo.Rows[0]["UserCode"] + "'" +
+                                    "WHERE ItemCode = '"+ ItemCode +"' ";
+
+                string updateStocks = "UPDATE stocks "+
+                                    "SET MinStocks = "+ MinStocks +" "+
+                                    "    , CurrentStocks = "+ Curstocks +"  " +
+                                    "    , MaxStocks = "+ MaxStocks +" " +
+                                    "    , UpdatedDate = now() " +
+                                    "    , UpdatedBy ='" + Config.UserInfo.Rows[0]["UserCode"] + "'" +
+                                    "WHERE ItemCode = '"+ ItemCode +"' ";
+
+                Config.ExecuteCmd(updateItems);
+                Config.ExecuteCmd(updateStocks);
+
+                rtnValue.isSuccess = true;
+                rtnValue.rtnItemCode = ItemCode;
+                
+            }
+            catch
+            {
+                rtnValue.isSuccess = false;
+            }
+
+            return rtnValue;
+        }
         public static DataTable RetrieveData()
         {
             DataTable rtnValue = new DataTable();
@@ -88,11 +125,33 @@ namespace PurchaseOrder.Process
 
             return rtnValue;
         }
+        public static DataTable RetrieveData(string strFilter)
+        {
+            DataTable rtnValue = new DataTable();
+
+            string query = "SELECT * FROM  " +
+                           "itemstocks where ItemCode like '%" + strFilter + "%' " +
+                           "or ItemCode like '%" + strFilter + "%' " +
+                           "or ItemName like '%" + strFilter + "%' " +
+                           "or UnitPrice like '%" + strFilter + "%' ";
+            rtnValue = Config.RetreiveData(query);
+
+            return rtnValue;
+        }
+        public static DataTable ItemDetails(string ItemCode)
+        {
+            DataTable rtnValue = new DataTable();
+
+            string query = "SELECT * FROM  " +
+                           "itemstocks where ItemCode = '"+ ItemCode + "'";
+            rtnValue = Config.RetreiveData(query);
+
+            return rtnValue;
+        }
         public static string GenerateBarcode()
         {
             string query = "Select max(ItemCode)+1 as maxcode from Items";
             return Config.ExecuteIntScalar(query).ToString(); ;
         }
-
     }
 }

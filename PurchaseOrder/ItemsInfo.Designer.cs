@@ -1,7 +1,7 @@
 ﻿
 namespace PurchaseOrder
 {
-    partial class AddItems
+    partial class ItemsInfo
     {
         /// <summary>
         /// Required designer variable.
@@ -96,7 +96,7 @@ namespace PurchaseOrder
             this.txtPrice.Multiline = true;
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(149, 22);
-            this.txtPrice.TabIndex = 33;
+            this.txtPrice.TabIndex = 6;
             this.txtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label7
@@ -114,7 +114,7 @@ namespace PurchaseOrder
             this.btnCancel.Location = new System.Drawing.Point(350, 318);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(112, 34);
-            this.btnCancel.TabIndex = 31;
+            this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -124,7 +124,7 @@ namespace PurchaseOrder
             this.btnSave.Location = new System.Drawing.Point(468, 318);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(112, 34);
-            this.btnSave.TabIndex = 30;
+            this.btnSave.TabIndex = 8;
             this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -135,7 +135,7 @@ namespace PurchaseOrder
             this.txtComment.Multiline = true;
             this.txtComment.Name = "txtComment";
             this.txtComment.Size = new System.Drawing.Size(491, 77);
-            this.txtComment.TabIndex = 29;
+            this.txtComment.TabIndex = 7;
             // 
             // label5
             // 
@@ -153,7 +153,7 @@ namespace PurchaseOrder
             this.txtMax.Multiline = true;
             this.txtMax.Name = "txtMax";
             this.txtMax.Size = new System.Drawing.Size(149, 22);
-            this.txtMax.TabIndex = 27;
+            this.txtMax.TabIndex = 5;
             this.txtMax.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
@@ -172,7 +172,7 @@ namespace PurchaseOrder
             this.txtCurrent.Multiline = true;
             this.txtCurrent.Name = "txtCurrent";
             this.txtCurrent.Size = new System.Drawing.Size(149, 22);
-            this.txtCurrent.TabIndex = 25;
+            this.txtCurrent.TabIndex = 4;
             this.txtCurrent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
@@ -191,7 +191,7 @@ namespace PurchaseOrder
             this.txtMin.Multiline = true;
             this.txtMin.Name = "txtMin";
             this.txtMin.Size = new System.Drawing.Size(149, 22);
-            this.txtMin.TabIndex = 23;
+            this.txtMin.TabIndex = 3;
             this.txtMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
@@ -210,7 +210,7 @@ namespace PurchaseOrder
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(491, 22);
-            this.txtName.TabIndex = 21;
+            this.txtName.TabIndex = 2;
             // 
             // label1
             // 
@@ -240,7 +240,7 @@ namespace PurchaseOrder
             this.txtBarcode.Multiline = true;
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(149, 22);
-            this.txtBarcode.TabIndex = 18;
+            this.txtBarcode.TabIndex = 1;
             // 
             // label6
             // 
@@ -264,16 +264,17 @@ namespace PurchaseOrder
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // AddItems
+            // ItemsInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(641, 415);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
-            this.Name = "AddItems";
+            this.Name = "ItemsInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Item";
             this.Load += new System.EventHandler(this.AddItems_Load);

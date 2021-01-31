@@ -28,6 +28,10 @@ namespace PurchaseOrder
         private void Items_Load(object sender, EventArgs e)
         {
             RefreshTable();
+            if (Convert.ToInt32(Config.UserInfo.Rows[0]["UserRights"]) == 2)
+            {
+                btnStockout.Enabled = false;
+            }
         }
 
         private void Items_KeyDown(object sender, KeyEventArgs e)
@@ -40,10 +44,28 @@ namespace PurchaseOrder
             {
                 btnAdd_Click(sender, null);
             }
+            else if (e.KeyCode == Keys.F2)
+            {
+                if (Convert.ToInt32(Config.UserInfo.Rows[0]["UserRights"]) == 1)
+                {
+                    btnStockout_Click(sender, null);
+                }
+            }
         }
+
         private void RefreshTable()
         {
-            DataTable dtable = ItemsProcess.RetrieveData();
+            DataTable dtable = new DataTable();
+            if (txtSearch.Text=="")
+            { 
+                dtable = ItemsProcess.RetrieveData();
+            }
+            else
+            {
+                dtable = ItemsProcess.RetrieveData(txtSearch.Text.Trim());
+            }
+
+            txtCountTotal.Text = dtable.Rows.Count.ToString();
 
             dataGridView1.Rows.Clear();
             dataGridView1.AllowUserToAddRows = true;
@@ -59,6 +81,7 @@ namespace PurchaseOrder
                     dataGridView1.Rows[x].Cells[3].Value = row["MinStocks"].ToString();
                     dataGridView1.Rows[x].Cells[4].Value = row["CurrentStocks"].ToString();
                     dataGridView1.Rows[x].Cells[5].Value = row["MaxStocks"].ToString();
+                    dataGridView1.Rows[x].Cells[6].Value = ">>";
                     x++;
                 }
             }
@@ -71,9 +94,33 @@ namespace PurchaseOrder
             //{
             //    NotifyMainFormToOpenChildFormAddItem();
             //}
-            Form additem = new AddItems();
+            Form additem = new ItemsInfo();
+            ItemsInfo.FormStatus = 1;
             additem.ShowDialog();
             RefreshTable();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            RefreshTable();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 6)
+            {
+                Form additem = new ItemsInfo();
+                ItemsInfo.FormStatus = 2;
+                ItemsInfo.ItemCode = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                additem.ShowDialog();
+                RefreshTable();
+            }
+        }
+
+        private void btnStockout_Click(object sender, EventArgs e)
+        {
+            Form form = new StockOutRange();
+            form.ShowDialog();
         }
     }
 }

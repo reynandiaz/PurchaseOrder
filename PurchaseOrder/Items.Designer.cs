@@ -33,19 +33,19 @@ namespace PurchaseOrder
             this.btnClose = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MinStocks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CurrentStocks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MaxStocks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Details = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtCountTotal = new System.Windows.Forms.TextBox();
+            this.btnStockout = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +53,7 @@ namespace PurchaseOrder
             // 
             this.btnClose.BackColor = System.Drawing.Color.IndianRed;
             this.btnClose.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnClose.Location = new System.Drawing.Point(791, 12);
+            this.btnClose.Location = new System.Drawing.Point(833, 12);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(36, 28);
             this.btnClose.TabIndex = 7;
@@ -82,46 +82,6 @@ namespace PurchaseOrder
             this.label5.TabIndex = 41;
             this.label5.Text = "(F1)";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(65, 53);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 16);
-            this.label1.TabIndex = 43;
-            this.label1.Text = "(F2)";
-            // 
-            // button1
-            // 
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button1.Location = new System.Drawing.Point(61, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(43, 38);
-            this.button1.TabIndex = 42;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(114, 53);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 16);
-            this.label2.TabIndex = 45;
-            this.label2.Text = "(F3)";
-            // 
-            // button2
-            // 
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.Location = new System.Drawing.Point(110, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(43, 38);
-            this.button2.TabIndex = 44;
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -131,28 +91,13 @@ namespace PurchaseOrder
             this.UnitPrice,
             this.MinStocks,
             this.CurrentStocks,
-            this.MaxStocks});
+            this.MaxStocks,
+            this.Details});
             this.dataGridView1.Location = new System.Drawing.Point(12, 91);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(815, 334);
+            this.dataGridView1.Size = new System.Drawing.Size(857, 334);
             this.dataGridView1.TabIndex = 50;
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(424, 64);
-            this.txtSearch.Multiline = true;
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(322, 21);
-            this.txtSearch.TabIndex = 51;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(752, 64);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 21);
-            this.btnSearch.TabIndex = 52;
-            this.btnSearch.Text = "&Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Barcode
             // 
@@ -186,18 +131,71 @@ namespace PurchaseOrder
             this.MaxStocks.HeaderText = "MaxStocks";
             this.MaxStocks.Name = "MaxStocks";
             // 
+            // Details
+            // 
+            this.Details.HeaderText = "";
+            this.Details.Name = "Details";
+            this.Details.Width = 30;
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(466, 64);
+            this.txtSearch.Multiline = true;
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(322, 21);
+            this.txtSearch.TabIndex = 51;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(794, 64);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 21);
+            this.btnSearch.TabIndex = 52;
+            this.btnSearch.Text = "&Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(697, 436);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 16);
+            this.label1.TabIndex = 54;
+            this.label1.Text = "Total Items:";
+            // 
+            // txtCountTotal
+            // 
+            this.txtCountTotal.Location = new System.Drawing.Point(788, 434);
+            this.txtCountTotal.Multiline = true;
+            this.txtCountTotal.Name = "txtCountTotal";
+            this.txtCountTotal.ReadOnly = true;
+            this.txtCountTotal.Size = new System.Drawing.Size(81, 21);
+            this.txtCountTotal.TabIndex = 55;
+            this.txtCountTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnStockout
+            // 
+            this.btnStockout.Location = new System.Drawing.Point(80, 12);
+            this.btnStockout.Name = "btnStockout";
+            this.btnStockout.Size = new System.Drawing.Size(113, 38);
+            this.btnStockout.TabIndex = 56;
+            this.btnStockout.Text = "Stock Out Report (F2)";
+            this.btnStockout.UseVisualStyleBackColor = true;
+            this.btnStockout.Click += new System.EventHandler(this.btnStockout_Click);
+            // 
             // Items
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(839, 437);
+            this.ClientSize = new System.Drawing.Size(881, 474);
+            this.Controls.Add(this.btnStockout);
+            this.Controls.Add(this.txtCountTotal);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnClose);
@@ -219,10 +217,6 @@ namespace PurchaseOrder
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnAdd;
         internal System.Windows.Forms.Label label5;
-        internal System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        internal System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
@@ -232,5 +226,9 @@ namespace PurchaseOrder
         private System.Windows.Forms.DataGridViewTextBoxColumn MinStocks;
         private System.Windows.Forms.DataGridViewTextBoxColumn CurrentStocks;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaxStocks;
+        private System.Windows.Forms.DataGridViewButtonColumn Details;
+        internal System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtCountTotal;
+        private System.Windows.Forms.Button btnStockout;
     }
 }

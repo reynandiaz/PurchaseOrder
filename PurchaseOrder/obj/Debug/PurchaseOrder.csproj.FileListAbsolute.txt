@@ -78,4 +78,7 @@ C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\bin\Debug\zh-CHS\Mic
 C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.ReceivePayment.resources
 C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.Items.resources
-C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.AddItems.resources
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.ItemsInfo.resources
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.Reports.StockOut.frmStockOut.resources
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.StockOutRange.resources
+C:\Users\diazr\Documents\GitHub\PurchaseOrder\PurchaseOrder\obj\Debug\PurchaseOrder.Users.resources

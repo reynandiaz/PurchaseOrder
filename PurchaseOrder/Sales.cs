@@ -26,24 +26,27 @@ namespace PurchaseOrder
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            PaymentMethod = 0;
-            ReceivedPayment = 0.0;
-
-            Form method = new PaymentMethod();
-            method.ShowDialog();
-
-            Form payment = new ReceivePayment();
-            payment.ShowDialog();
-
-            var rtnValue = SalesProcess.InsertHeader(txtTransactionCode.Text.Trim(), TransactionType, Convert.ToDouble(txtTotalPrice.Text),
-                PaymentMethod, "", ReceivedPayment);
-            if (rtnValue.rtnSuccess == true)
+            if (dataGridView1.Rows.Count > 0)
             {
-                Reports.SalesReceipt.frmReceipt.TransactionCode = txtTransactionCode.Text.Trim();
-                Form receipt = new Reports.SalesReceipt.frmReceipt();
-                receipt.ShowDialog();
+                PaymentMethod = 0;
+                ReceivedPayment = 0.0;
 
-                this.Close();
+                Form method = new PaymentMethod();
+                method.ShowDialog();
+
+                Form payment = new ReceivePayment();
+                payment.ShowDialog();
+
+                var rtnValue = SalesProcess.InsertHeader(txtTransactionCode.Text.Trim(), TransactionType, Convert.ToDouble(txtTotalPrice.Text),
+                    PaymentMethod, "", ReceivedPayment);
+                if (rtnValue.rtnSuccess == true)
+                {
+                    Reports.SalesReceipt.frmReceipt.TransactionCode = txtTransactionCode.Text.Trim();
+                    Form receipt = new Reports.SalesReceipt.frmReceipt();
+                    receipt.ShowDialog();
+
+                    this.Close();
+                }
             }
 
         }

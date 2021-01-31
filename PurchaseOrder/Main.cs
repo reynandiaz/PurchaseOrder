@@ -14,9 +14,10 @@ namespace PurchaseOrder
     public partial class Main : Form
     {
         private PointOfSales pointofsales = new PointOfSales();
+        private Users users = new Users();
         private Sales sales;
         private Items items = new Items();
-        private AddItems additems;
+        private ItemsInfo additems;
 
         public Main()
         {
@@ -26,6 +27,10 @@ namespace PurchaseOrder
         private void Main_Load(object sender, EventArgs e)
         {
             this.IsMdiContainer = true;
+            if (Convert.ToInt32(Config.UserInfo.Rows[0]["UserRights"]) != 1)
+            {
+                uToolStripMenuItem.Enabled = false;
+            }
         }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -61,7 +66,7 @@ namespace PurchaseOrder
         private void NotifyMainFormToOpenChildFormAddItem()
         {
             if (additems != null) { additems.Dispose(); }
-            additems = new AddItems();
+            additems = new ItemsInfo();
             additems.MdiParent = this;
             additems.Show();
         }
@@ -74,6 +79,14 @@ namespace PurchaseOrder
             items.MdiParent = this;
             items.NotifyMainFormToOpenChildFormAddItem += NotifyMainFormToOpenChildFormAddItem;
             items.Show();
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            users.Dispose();
+            users = new Users();
+            users.MdiParent = this;
+            users.Show();
         }
     }
 }

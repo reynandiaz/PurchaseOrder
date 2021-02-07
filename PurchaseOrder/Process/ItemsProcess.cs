@@ -22,7 +22,7 @@ namespace PurchaseOrder.Process
             {
                 string checkQuery = "Select count(itemCode) from items where itemcode = '" + ItemCode + "'";
 
-                int cntCheck = Config.ExecuteIntScalar(checkQuery);
+                long cntCheck = Config.ExecuteIntScalar(checkQuery);
 
                 if (cntCheck == 0)
                 {
@@ -54,7 +54,7 @@ namespace PurchaseOrder.Process
             {
                 string checkQuery = "Select count(itemCode) from items where itemcode = '" + ItemCode + "'";
 
-                int cntCheck = Config.ExecuteIntScalar(checkQuery);
+                long cntCheck = Config.ExecuteIntScalar(checkQuery);
 
                 if (cntCheck == 0)
                 {

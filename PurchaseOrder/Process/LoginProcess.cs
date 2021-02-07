@@ -35,7 +35,7 @@ namespace PurchaseOrder.Process
             if (dtable.Rows.Count == 0)
             {
                 string maxPCCode = "SELECT * FROM generatepccode";
-                int intMax = Config.ExecuteIntScalar(maxPCCode);
+                long intMax = Config.ExecuteIntScalar(maxPCCode);
                 Config.PCCode = intMax.ToString();
 
                 string InsertCode = "Insert into userpc values("+ intMax + ",'" + hostname + "',now(),null,now())";

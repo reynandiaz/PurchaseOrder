@@ -31,7 +31,7 @@ namespace PurchaseOrder.Process
             try
             {
                 string strCheck = "Select count(UserCode) from Users where UserCode = '" + UserCode + "'";
-                int cnt = Config.ExecuteIntScalar(strCheck);
+                long cnt = Config.ExecuteIntScalar(strCheck);
                 if (cnt == 0)
                 {
                     string strInsert = "Insert into Users " +
@@ -82,11 +82,11 @@ namespace PurchaseOrder.Process
 
             string checkExist = "Select count(UserCode) from Users where UserCode = '" + UserCode + "'";
 
-            int cntExist = Config.ExecuteIntScalar(checkExist);
+            long cntExist = Config.ExecuteIntScalar(checkExist);
             if (cntExist > 0)
             {
                 string chkActivated = "Select count(UserCode) from Users where UserCode = '" + UserCode + "' and DeletedDate is null";
-                int cntActivated = Config.ExecuteIntScalar(chkActivated);
+                long cntActivated = Config.ExecuteIntScalar(chkActivated);
                 if (cntActivated > 0)
                 {
                     //update deleteddate now

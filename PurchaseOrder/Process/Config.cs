@@ -49,16 +49,16 @@ namespace PurchaseOrder.Process
 
             return dtable;
         }
-        public static int ExecuteIntScalar(string query)
+        public static long ExecuteIntScalar(string query)
         {
-            int intReturn = 0;
+            long intReturn = 0;
 
             var command = new MySqlCommand(query, connection);
             try
             {
                 connection.Open();
                 var cnt = command.ExecuteScalar();
-                intReturn = (cnt.ToString() == "" ? 0 : Convert.ToInt32(cnt));
+                intReturn = (cnt.ToString() == "" ? 0 : Convert.ToInt64(cnt));
                 return intReturn;
             }
             finally

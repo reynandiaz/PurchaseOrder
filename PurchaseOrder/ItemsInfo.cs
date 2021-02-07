@@ -68,7 +68,7 @@ namespace PurchaseOrder
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtBarcode.Text!="" && txtName.Text!="" && txtMin.Text!="" && txtCurrent.Text!="" && txtMax.Text!="")
+            if (txtBarcode.Text!="" && txtName.Text!="" && txtMin.Text!="" && txtCurrent.Text!="" && txtMax.Text!="" && txtPrice.Text!="")
             {
                 if (FormStatus == 1)
                 {

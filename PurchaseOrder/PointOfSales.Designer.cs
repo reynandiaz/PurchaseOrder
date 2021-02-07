@@ -41,18 +41,17 @@ namespace PurchaseOrder
             this.Details = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnReprint = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.ItemName2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblCode = new System.Windows.Forms.Label();
             this.lblReceived = new System.Windows.Forms.Label();
             this.lblTotalPrice = new System.Windows.Forms.Label();
             this.btnStockOut = new System.Windows.Forms.Button();
-            this.ItemName2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -150,15 +149,6 @@ namespace PurchaseOrder
             this.btnReprint.UseVisualStyleBackColor = true;
             this.btnReprint.Click += new System.EventHandler(this.btnReprint_Click);
             // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(969, 395);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(138, 28);
-            this.button6.TabIndex = 9;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -199,6 +189,24 @@ namespace PurchaseOrder
             this.dataGridView2.Size = new System.Drawing.Size(284, 254);
             this.dataGridView2.TabIndex = 7;
             // 
+            // ItemName2
+            // 
+            this.ItemName2.HeaderText = "Name";
+            this.ItemName2.Name = "ItemName2";
+            this.ItemName2.Width = 150;
+            // 
+            // Qty
+            // 
+            this.Qty.HeaderText = "Qty";
+            this.Qty.Name = "Qty";
+            this.Qty.Width = 40;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            this.Price.Width = 65;
+            // 
             // lblCode
             // 
             this.lblCode.AutoSize = true;
@@ -236,24 +244,6 @@ namespace PurchaseOrder
             this.btnStockOut.UseVisualStyleBackColor = true;
             this.btnStockOut.Click += new System.EventHandler(this.btnStockOut_Click);
             // 
-            // ItemName2
-            // 
-            this.ItemName2.HeaderText = "Name";
-            this.ItemName2.Name = "ItemName2";
-            this.ItemName2.Width = 150;
-            // 
-            // Qty
-            // 
-            this.Qty.HeaderText = "Qty";
-            this.Qty.Name = "Qty";
-            this.Qty.Width = 40;
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
-            this.Price.Width = 65;
-            // 
             // PointOfSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,7 +256,6 @@ namespace PurchaseOrder
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button6);
             this.Controls.Add(this.btnReprint);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.btnClose);
@@ -295,7 +284,6 @@ namespace PurchaseOrder
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnReprint;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

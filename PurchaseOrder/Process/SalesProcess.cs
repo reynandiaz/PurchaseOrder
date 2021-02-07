@@ -26,7 +26,7 @@ namespace PurchaseOrder.Process
 
             string countmax = "SELECT count(TransactionCode) AS MaxTransCode FROM " +
                                "transactiondetails WHERE TransactionCode LIKE '" + Config.PCCode + "-" + datecode + "-%' ";
-            int cntmax = Config.ExecuteIntScalar(countmax);
+            long cntmax = Config.ExecuteIntScalar(countmax);
 
             string strgetmax = "SELECT max(TransactionCode) AS MaxTransCode FROM " +
                                "transactiondetails WHERE TransactionCode LIKE '"+ Config.PCCode +"-"+ datecode + "-%' ";
@@ -43,9 +43,9 @@ namespace PurchaseOrder.Process
             return strCode;
         }
 
-        public static int ItemExist(string ItemCode)
+        public static long ItemExist(string ItemCode)
         {
-            int rtnExist = 0;
+            long rtnExist = 0;
             string query = "Select count(ItemCode) from items where ItemCode = '" + ItemCode.Trim() + "'";
             return rtnExist = Config.ExecuteIntScalar(query);
         }
@@ -57,7 +57,7 @@ namespace PurchaseOrder.Process
             string strCheckScanned = "Select count(ItemCode) from transactiondetails " +
                 "where TransactionCode = '" + TransactionCode + "' and ItemCode='" + ItemCode + "'";
 
-            int cntCheck = Config.ExecuteIntScalar(strCheckScanned);
+            long cntCheck = Config.ExecuteIntScalar(strCheckScanned);
             if (cntCheck == 0)
             {
                 string itemInfo = "Select * from items where ItemCode = '"+ ItemCode + "'";
@@ -65,7 +65,7 @@ namespace PurchaseOrder.Process
 
                 string strGetMaxSeq = "Select max(Seq) from transactiondetails "+
                     "where TransactionCode = '" + TransactionCode + "'";
-                int intMaxSeq = Config.ExecuteIntScalar(strGetMaxSeq)+1;
+                long intMaxSeq = Config.ExecuteIntScalar(strGetMaxSeq)+1;
 
                 string strInsertDetails = "Insert into transactiondetails values (" +
                     "'" + TransactionCode + "'," +
